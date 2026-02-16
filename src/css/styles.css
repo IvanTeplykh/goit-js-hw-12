@@ -1,0 +1,175 @@
+/**
+  |============================
+  | include css partials with
+  | default @import url()
+  |============================
+*/
+/* Common styles */
+@import url('./reset.css');
+@import url('./base.css');
+
+/* Form Container Styles */
+form {
+  margin-top: 36px;
+  margin-bottom: 32px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button Styles */
+button {
+  background-color: #4e75ff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #455ba8;
+}
+
+/* Input Field Styles */
+input {
+  padding: 8px 12px;
+  border: 1px solid #808080;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 200px;
+}
+.js-search-query {
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #2e2f42;
+}
+
+body {
+  margin: 0;
+}
+
+/* Image Gallery Layout */
+.gallery {
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  width: 1140px;
+  gap: 24px 20px;
+  list-style: none;
+}
+
+/* Photo Card Styles */
+.photo-card {
+  width: 360px;
+  height: 200px;
+  border: 1px solid #808080;
+  position: relative;
+}
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+/* Image Info Overlay */
+.info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  background-color: #fff;
+}
+.info-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Feedback Form specific styles (if applicable) */
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+  width: 408px;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+input,
+textarea {
+  border: 1px solid #808080;
+  border-radius: 4px;
+}
+input:hover,
+textarea:hover {
+  border-color: #000000;
+}
+input:active,
+textarea:active {
+  border: 1px solid #808080;
+}
+
+/* Utility Class for Hiding Elements */
+.hidden {
+  display: none;
+}
+
+/* Loader Animation Styles */
+.loader {
+  margin: 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite;
+}
+.loader::before,
+.loader::after {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  animation: prixClipFix 2s linear infinite;
+}
+.loader::after {
+  transform: rotate3d(90, 90, 0, 180deg);
+  border-color: #ff3d00;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  75%,
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+}
