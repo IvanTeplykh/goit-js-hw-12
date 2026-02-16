@@ -10,8 +10,6 @@
 
 /* Form Container Styles */
 form {
-  margin-top: 36px;
-  margin-bottom: 32px;
   display: flex;
   gap: 10px;
   align-items: center;
@@ -52,11 +50,26 @@ input {
 
 body {
   margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  position: fixed;
+  z-index: 1;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 /* Image Gallery Layout */
 .gallery {
-  padding: 0;
+  padding-top: 60px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -130,6 +143,7 @@ textarea:active {
 
 /* Loader Animation Styles */
 .loader {
+  margin-top: 20px;
   margin: 0 auto;
   width: 48px;
   height: 48px;
@@ -172,4 +186,22 @@ textarea:active {
   100% {
     clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
   }
+}
+
+.load-more {
+  margin: 0 auto;
+  display: block;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.load-more:hover {
+  background-color: #455ba8;
+}
+
+.load-more.hidden {
+  display: none;
+}
+.radio {
+  display: flex;
 }

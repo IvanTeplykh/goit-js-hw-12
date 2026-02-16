@@ -7,6 +7,8 @@ import 'izitoast/dist/css/iziToast.min.css';
 // Initialize SimpleLightbox variable
 const SimpleLightbox = SimpleLightboxModule.default || SimpleLightboxModule;
 let lightbox;
+// Selectors
+const jsImgTotal = document.querySelector('.js-img-total');
 
 // Function to render the gallery markup
 export function markupGallery(images) {
@@ -17,7 +19,7 @@ export function markupGallery(images) {
       image =>
         `<li class="photo-card">
             <a href="${image.largeImageURL}">
-                <img src="${image.webformatURL}" alt="${image.tags}"/>
+                <img src="${image.webformatURL}" alt="${image.tags.split(',').slice(0, 3).join(', ')}"/>
             </a>
             <div class="info">
             <div class="info-item">
@@ -46,7 +48,7 @@ export function markupGallery(images) {
     .join('');
 
   // Insert markup into the gallery container
-  galleryContainer.innerHTML = galleryMarkup;
+  galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
 
   // Initialize or refresh SimpleLightbox
   if (!lightbox) {
@@ -78,4 +80,33 @@ export function showLoader() {
 export function hideLoader() {
   const loaderContainer = document.querySelector('.loader');
   loaderContainer.classList.add('hidden');
+}
+
+// Function to show the load more button
+export function showLoadMoreBtn() {
+  const loadMoreBtn = document.querySelector('.load-more');
+  loadMoreBtn.classList.remove('hidden');
+}
+
+// Function to hide the load more button
+export function hideLoadMoreBtn() {
+  const loadMoreBtn = document.querySelector('.load-more');
+  loadMoreBtn.classList.add('hidden');
+}
+
+export function showImgTotal(images, imagesCount) {
+  const jsImgTotal = document.querySelector('.img-total');
+  imagesCount += images.hits.length;
+  jsImgTotal.textContent = `Total images: ${imagesCount}/${images.totalHits}`;
+  if (images.totalHits === imagesCount) {
+    hideLoadMoreBtn();
+    iziToast.info({
+      title: 'Info',
+      position: 'topRight',
+      message: 'Sorry, it is all images we have',
+    });
+  } else {
+    showLoadMoreBtn();
+  }
+  return imagesCount;
 }
