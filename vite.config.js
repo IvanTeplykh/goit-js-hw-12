@@ -6,41 +6,48 @@ import SortCss from 'postcss-sort-media-queries';
 
 export default defineConfig(({ command }) => {
   return {
+    // 🔹 ОБОВʼЯЗКОВО для GitHub Pages
+    base: '/goit-js-hw-12/',
+
+    // 🔹 Коренева папка
+    root: 'src',
+
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
-    base: '/goit-js-hw-12/',
-    root: 'src',
+
     build: {
       sourcemap: true,
+
+      // 🔹 Правильний input (БЕЗ src/, бо root вже = src)
       rollupOptions: {
-        input: glob.sync('./src/*.html'),
+        input: glob.sync('./*.html'),
+
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
               return 'vendor';
             }
           },
-          entryFileNames: chunkInfo => {
-            if (chunkInfo.name === 'commonHelpers') {
-              return 'commonHelpers.js';
-            }
-            return '[name].js';
-          },
+
+          entryFileNames: '[name].js',
+
           assetFileNames: assetInfo => {
-            if (assetInfo.name && assetInfo.name.endsWith('.html')) {
+            if (assetInfo.name?.endsWith('.html')) {
               return '[name].[ext]';
             }
             return 'assets/[name]-[hash][extname]';
           },
         },
       },
+
       outDir: '../dist',
       emptyOutDir: true,
     },
+
     plugins: [
       injectHTML(),
-      FullReload(['./src/**/**.html']),
+      FullReload(['./src/**/*.html']),
       SortCss({
         sort: 'mobile-first',
       }),
